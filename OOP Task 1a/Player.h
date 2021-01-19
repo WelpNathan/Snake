@@ -1,33 +1,30 @@
 #pragma once
 
-#include "constants.h"
-
-class Player
+class player
 {
-    public:
-        // constructor
-        Player();
+public:
+	player();
 
-        // assessors
-        int GetX();
-        int GetY();
-        char GetSymbol() const;
-        bool IsAtPosition(int x, int y);
+	int get_x() const;
+	int get_y() const;
 
-        // mutators
-        void Move(int key);
+	char get_symbol() const;
+	bool is_at_position(int x_new, int y_new) const;
+	
+	int get_score() const;
+	void set_score(int score);
+	
+	void move(int key);
+	
+	void position_in_middle_of_grid();
 
-        char symbol;
-        int  x, y;
+private:
+	int x_;
+	int y_;
+	char symbol_;
+	int dx_;
+	int dy_;
+	int score_ = 0;
 
-    private:
-        // data members
-        bool alive;
-        bool escaped;
-        int dx;
-        int dy;
-
-        // supporting functions 
-        void PositionInMiddleOfGrid();
-        void UpdatePosition(int dx, int dy);
+	void update_position(int x_new, int y_new);
 };

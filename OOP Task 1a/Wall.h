@@ -1,25 +1,16 @@
 #pragma once
 
-#include <assert.h>
-#include "constants.h"
-
-using namespace std;
-
-class Wall
+class wall
 {
-    public:
-        // constructors
-        Wall();
-        Wall(int x, int y);
+public:
+	wall(int x, int y);
 
-        // assessors
-        int GetX();
-        int GetY();
-        char GetSymbol() const;
-        bool IsAtPosition(int x, int y);
+	int get_x() const;
+	int get_y() const;
+	char get_symbol() const;
+	bool is_at_position(int x_check, int y_check) const;
 
-    private:
-        // data members
-        char symbol;
-        int x, y;
+private:
+	char symbol_;
+	int x_{}, y_{};
 };

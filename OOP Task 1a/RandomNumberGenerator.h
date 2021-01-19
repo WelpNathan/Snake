@@ -1,21 +1,12 @@
 #pragma once
 
-#include <stdlib.h>
-#include <assert.h>
-#include <time.h>
-
-using namespace std;
-
-class RandomNumberGenerator
+class random_number_generator
 {
-    public:
-        // constructors
-        RandomNumberGenerator();
+public:
+	random_number_generator();
 
-        // assessors
-        int GetRandomValue(int) const;
+	static int get_random_value(int);
 
-    private:
-        // supporting functions
-        void Seed();
+private:
+	static void seed();
 };
