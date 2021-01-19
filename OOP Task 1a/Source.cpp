@@ -72,10 +72,10 @@ int main()
 			DrawText("Press 'P'\nTo Pause", screen_width / 2 + 175, screen_height / 2, 40, LIGHTGRAY);
 
 			// set which way the snake should move
-			if (IsKeyPressed(KEY_RIGHT)) key_pressed = KEY_RIGHT;
-			if (IsKeyPressed(KEY_LEFT)) key_pressed = KEY_LEFT;
-			if (IsKeyPressed(KEY_UP)) key_pressed = KEY_UP;
-			if (IsKeyPressed(KEY_DOWN)) key_pressed = KEY_DOWN;
+			if (IsKeyPressed(KEY_RIGHT) && key_pressed != KEY_LEFT) key_pressed = KEY_RIGHT;
+			if (IsKeyPressed(KEY_LEFT) && key_pressed != KEY_RIGHT) key_pressed = KEY_LEFT;
+			if (IsKeyPressed(KEY_UP) && key_pressed != KEY_DOWN) key_pressed = KEY_UP;
+			if (IsKeyPressed(KEY_DOWN) && key_pressed != KEY_UP) key_pressed = KEY_DOWN;
 			
 			// perform actions every 5 frames
 			if (count_frames % MODE_HARD == 0)
@@ -89,7 +89,7 @@ int main()
 				// if still running, check for fruit collision
 				if (game.is_running())
 				{
-					std::cout << "Player position | X: " << player->get_x() << " Y: " << player->get_y() << std::endl;
+					//std::cout << "Player position | X: " << player->get_x() << " Y: " << player->get_y() << std::endl;
 					
 					// if the player collects fruit at the location
 					const auto fruit_score = game.handle_fruit_at_position(player->get_x(), player->get_y());
