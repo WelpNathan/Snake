@@ -1,6 +1,8 @@
 #include "Game.h"
 
 #include <algorithm>
+#include <iostream>
+
 
 #include "Constants.h"
 
@@ -99,7 +101,7 @@ std::vector<std::vector<char>> game::prepare_grid()
 	}
 
 	// generate trail on board
-	for (auto trail : *player_.get_trails())
+	for (auto &trail : *player_.get_trails())
 	{
 		const auto x_pos = trail.get_x() - 1;
 		const auto y_pos = trail.get_y() - 1;

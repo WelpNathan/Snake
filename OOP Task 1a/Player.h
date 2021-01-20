@@ -25,6 +25,7 @@ public:
 	
 	std::vector<trail>* get_trails();
 	void add_trail(int x, int y);
+	void update_trail();
 
 private:
 	int x_;

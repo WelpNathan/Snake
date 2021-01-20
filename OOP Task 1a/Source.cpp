@@ -80,6 +80,8 @@ int main()
 			// perform actions every 5 frames
 			if (count_frames % MODE_HARD == 0)
 			{
+				player->update_trail();
+				
 				// process game input
 				game.process_input(key_pressed);
 
@@ -89,12 +91,14 @@ int main()
 				// if still running, check for fruit collision
 				if (game.is_running())
 				{
-					std::cout << "Player position | X: " << player->get_x() << " Y: " << player->get_y() << std::endl;
+					// std::cout << "Player position | X: " << player->get_x() << " Y: " << player->get_y() << std::endl;
 					
 					// if the player collects fruit at the location
 					const auto fruit_score = game.handle_fruit_at_position(player->get_x(), player->get_y());
 					if (fruit_score > 0)
 					{
+						player->add_trail(player->get_x(), player->get_y());
+						
 						std::cout << "A fruit with a score of " << fruit_score << " was collected." << std::endl;
 						
 						// update player's score
@@ -150,6 +154,9 @@ int main()
 					break;
 				case PLAYER: 
 					DrawRectangle(x_position, y_position, cell_size, cell_size, GREEN);
+					break;
+				case TRAIL:
+					DrawRectangle(x_position, y_position, cell_size, cell_size, BLUE);
 					break;
 				case FRUIT:
 					DrawRectangle(x_position, y_position, cell_size, cell_size, ORANGE);

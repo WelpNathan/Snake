@@ -29,5 +29,23 @@ int trail::get_x() const
 /// <returns>Y position.</returns>
 int trail::get_y() const
 {
-	return x_;
+	return y_;
+}
+
+/// <summary>
+/// Sets the X position of the trail.
+/// </summary>
+/// <param name="x">X position</param>
+void trail::set_x(int x)
+{
+	x_ = x;
+}
+
+/// <summary>
+/// Sets the Y position of the trail.
+/// </summary>
+/// <param name="y">Y position</param>
+void trail::set_y(int y)
+{
+	y_ = y;
 }
