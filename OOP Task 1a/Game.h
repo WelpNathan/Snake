@@ -22,6 +22,7 @@ public:
 	void set_paused(bool paused);
 
 	bool is_player_collide_wall();
+	bool is_player_collide_player();
 	int handle_fruit_at_position(int x, int y);
 
 	player* get_player();
