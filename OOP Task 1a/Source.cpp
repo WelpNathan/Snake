@@ -89,14 +89,16 @@ int main()
 				// if still running, check for fruit collision
 				if (game.is_running())
 				{
-					//std::cout << "Player position | X: " << player->get_x() << " Y: " << player->get_y() << std::endl;
+					std::cout << "Player position | X: " << player->get_x() << " Y: " << player->get_y() << std::endl;
 					
 					// if the player collects fruit at the location
 					const auto fruit_score = game.handle_fruit_at_position(player->get_x(), player->get_y());
 					if (fruit_score > 0)
 					{
 						std::cout << "A fruit with a score of " << fruit_score << " was collected." << std::endl;
+						
 						// update player's score
+						player->add_fruit();
 						player->set_score(player->get_score() + fruit_score);
 						
 						// generate a new fruit on the board
@@ -107,6 +109,7 @@ int main()
 							x = random_number_generator::get_random_value(SIZE) + 1;
 							y = random_number_generator::get_random_value(SIZE) + 1;
 						}
+						
 						game.spawn_fruit(x, y, 1000); // spawn fruit with score of 1000
 					}
 				}

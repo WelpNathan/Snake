@@ -10,3 +10,4 @@
 #define WALL 'W'
 #define FRUIT 'F'
 #define FLOOR 'X'
+#define TRAIL 'T'

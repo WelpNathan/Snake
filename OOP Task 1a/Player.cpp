@@ -13,6 +13,16 @@ player::player() : x_(0), y_(0), symbol_(PLAYER), dx_(0), dy_(0)
 }
 
 /// <summary>
+/// Reset's the player's data for a new game.
+/// </summary>
+void player::reset()
+{
+	fruit_collected_ = 0;
+	this->position_in_middle_of_grid();
+	this->set_score(0);
+}
+
+/// <summary>
 /// Returns the X position of the player.
 /// </summary>
 /// <returns>X location</returns>
@@ -124,4 +134,31 @@ void player::position_in_middle_of_grid()
 {
 	x_ = SIZE / 2;
 	y_ = SIZE / 2;
+}
+
+/// <summary>
+/// Gets the player's trails.
+/// </summary>
+/// <returns>Player trails.</returns>
+std::vector<trail>* player::get_trails()
+{
+	return &trails_;
+}
+
+/// <summary>
+/// Adds a new trail to the player.
+/// </summary>
+void player::add_trail(const int x, const int y)
+{
+	const trail trail(x, y);
+	trails_.push_back(trail);
+}
+
+/// <summary>
+/// Notifies the player that a fruit
+/// was collected.
+/// </summary>
+void player::add_fruit()
+{
+	fruit_collected_++;
 }
