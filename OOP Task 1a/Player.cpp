@@ -1,5 +1,7 @@
 #include "Player.h"
 
+
+#include <iostream>
 #include <raylib.h>
 
 #include "Constants.h"
@@ -10,6 +12,17 @@
 player::player() : x_(0), y_(0), symbol_(PLAYER), dx_(0), dy_(0)
 {
 	position_in_middle_of_grid();
+}
+
+/// <summary>
+/// Reset's the player's data for a new game.
+/// </summary>
+void player::reset()
+{
+	fruit_collected_ = 0;
+	trails_.clear();
+	this->position_in_middle_of_grid();
+	this->set_score(0);
 }
 
 /// <summary>
@@ -124,4 +137,65 @@ void player::position_in_middle_of_grid()
 {
 	x_ = SIZE / 2;
 	y_ = SIZE / 2;
+}
+
+/// <summary>
+/// Gets the player's trails.
+/// </summary>
+/// <returns>Player trails.</returns>
+std::vector<trail>* player::get_trails()
+{
+	return &trails_;
+}
+
+/// <summary>
+/// Adds a new trail to the player.
+/// </summary>
+void player::add_trail(const int x, const int y)
+{
+	std::cout << "added trail to trails";
+	fruit_collected_++;
+	const trail trail(x, y);
+	trails_.push_back(trail);
+}
+
+/// <summary>
+/// Update's the player's trail.
+/// </summary>
+void player::update_trail()
+{
+	// setup first trail (follows player)
+	if (!trails_.empty())
+	{
+		auto &trail = trails_.at(0);
+		trail.set_x(this->get_x());
+		trail.set_y(this->get_y());
+
+		for (auto i = trails_.size(); i-- > 1;) {
+			auto &trail2 = trails_.at(i);
+			trail2.set_x(trails_.at(i - 1).get_x());
+			trail2.set_y(trails_.at(i - 1).get_y());
+		}
+	}
+	
+	// do other trails
+	//if (trails_.size() > 1)
+	//{
+	//	// iterate over other trails
+	//	for (auto i = trails_.size(); i-- > 1;) {
+	//		std::cout << i << std::endl;
+	//		auto &trail = trails_.at(i);
+	//		trail.set_x(trails_.at(i - 1).get_x());
+	//		trail.set_y(trails_.at(i - 1).get_y());
+	//	}
+	//}
+}
+
+/// <summary>
+/// Notifies the player that a fruit
+/// was collected.
+/// </summary>
+void player::add_fruit()
+{
+	fruit_collected_++;
 }

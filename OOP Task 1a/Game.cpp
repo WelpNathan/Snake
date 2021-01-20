@@ -1,6 +1,8 @@
 #include "Game.h"
 
 #include <algorithm>
+#include <iostream>
+
 
 #include "Constants.h"
 
@@ -35,8 +37,7 @@ void game::reset()
 	fruits_.clear();
 	this->setup();
 	this->set_running(true);
-	player_.position_in_middle_of_grid();
-	player_.set_score(0);
+	player_.reset();
 }
 
 /// <summary>
@@ -97,6 +98,14 @@ std::vector<std::vector<char>> game::prepare_grid()
 		const auto x_pos = fruit.get_x() - 1;
 		const auto y_pos = fruit.get_y() - 1;
 		grid.at(y_pos).at(x_pos) = FRUIT;
+	}
+
+	// generate trail on board
+	for (auto &trail : *player_.get_trails())
+	{
+		const auto x_pos = trail.get_x() - 1;
+		const auto y_pos = trail.get_y() - 1;
+		grid.at(y_pos).at(x_pos) = TRAIL;
 	}
 
 	// return grid object

@@ -7,6 +7,7 @@
 /// </summary>
 /// <param name="x">X position of fruit.</param>
 /// <param name="y">Y position of fruit.</param>
+/// <param name="score">Score of fruit</param>
 fruit::fruit(const int x, const int y, const int score)
 {
 	x_ = x;
