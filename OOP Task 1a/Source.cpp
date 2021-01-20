@@ -85,8 +85,9 @@ int main()
 				// process game input
 				game.process_input(key_pressed);
 
-				// if the player collides with a wall, end game
+				// if the player collides with a wall or themselves, end game
 				if (game.is_player_collide_wall()) game.set_running(false);
+				if (game.is_player_collide_player()) game.set_running(false);
 
 				// if still running, check for fruit collision
 				if (game.is_running())

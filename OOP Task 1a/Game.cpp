@@ -172,6 +172,23 @@ bool game::is_player_collide_wall()
 }
 
 /// <summary>
+/// Returns if the player is colliding with themselves.
+/// </summary>
+/// <returns></returns>
+bool game::is_player_collide_player()
+{
+	auto &trails = *player_.get_trails();
+	for (auto& trail : trails)
+	{
+		if (trail.get_x() == player_.get_x() && trail.get_y() == player_.get_y())
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+/// <summary>
 /// Checks if the game is running or not.
 /// </summary>
 /// <returns>Game running status.</returns>
